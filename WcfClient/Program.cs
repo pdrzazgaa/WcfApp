@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ServiceModel;
 using System.Threading.Tasks;
 using WcfClient.ServiceReference1;
 
@@ -17,43 +16,63 @@ namespace WcfClient
 
         static void Main(string[] args)
         {
+            MyData.MyInfo();
 
-            Console.WriteLine("Klient wystartował");
-            Uri baseAddress;
+            int operation = 0;
+  
+            do
+            {
+                Console.WriteLine("Wybierz operację:");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("1. Dodawanie");
+                Console.WriteLine("2. Odejmowanie");
+                Console.WriteLine("3. Mnożenie");
+                Console.WriteLine("4. Dzielenie");
+                Console.WriteLine("5. Modulo");
+                Console.WriteLine("6. Mnożenie asynchroniczne");
+                Console.WriteLine("7. Liczby pierwsze: największa i ich liczba w przedziale");
+                Console.WriteLine("0. Wyjście");
+                Console.ResetColor();
 
-            BasicHttpBinding myBinding = new BasicHttpBinding();
-            baseAddress = new
-                Uri("http://localhost:8080/MyCalculator/endpoint1");
+                if (!int.TryParse(Console.ReadLine(), out operation))
+                {
+                    Console.WriteLine("Nieprawidłowe wejście.");
+                    continue;
+                }
 
-            EndpointAddress endpointAddress = new EndpointAddress(baseAddress);
-
-            ChannelFactory<ICalculator> myCF = new ChannelFactory<ICalculator>(myBinding, endpointAddress);
-            ICalculator myClient = myCF.CreateChannel();
-
-            Console.WriteLine("Wywołanie metody Add (dla endpointa1)");
-            int result1 = myClient.iAdd(-3, 9);
-            Console.WriteLine("Wynik = " + result1);
-
-            CalculatorClient myClient2 = new CalculatorClient("WSHttpBinding_ICalculator");
-            Console.WriteLine("Wywołanie metody iMul (dla endpointa2) - ");
-            var result2 = myClient2.iMul(-3, 9);
-            Console.WriteLine("Wynik = " + result2);
-
-            Console.WriteLine("Wywołanie metody HMultiply ASYNCHRONICZNIE");
-            var resultAsync = callHMultiply(-3, 7, myClient2);
-            var resultA = resultAsync.Result;
-            Console.WriteLine("2... Wynik metody HMultiply Result = "+resultA);
-
-            // Inne operacje
-
-            Console.WriteLine("Naciśnij <ENTER> aby zakończyć");
-            Console.WriteLine();
-            Console.ReadLine();
-
-            ((IClientChannel)myClient).Close();
-
-            Console.WriteLine("Klient zamknięty - ZAKOŃCZONO");
-
+                switch (operation)
+                {
+                    case 0:
+                        MyCalculatorHandler.CloseConnection();
+                        break;
+                    case 1:
+                        MyCalculatorHandler.Addition();
+                        break;
+                    case 2:
+                        MyCalculatorHandler.Subtraction();
+                        break;
+                    case 3:
+                        MyCalculatorHandler.Multiplication();
+                        break;
+                    case 4:
+                        MyCalculatorHandler.Division();
+                        break;
+                    case 5:
+                        MyCalculatorHandler.Modulo();
+                        break;
+                    case 6:
+                        MyCalculatorHandler.HMultiply();
+                        break;
+                    case 7:
+                        MyCalculatorHandler.CountAndMaxPrimesInRangeAsync();
+                        break;
+                    default:
+                        Console.WriteLine("Nieprawidłowe wejście.");
+                        break;
+                }
+            } while (operation != 0);
+            Console.ReadKey();
         }
+
     }
 }

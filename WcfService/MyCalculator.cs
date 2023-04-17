@@ -20,9 +20,9 @@ namespace WcfService
                     return result;
                 }
             }
-            catch (OverflowException)
+            catch (OverflowException ex)
             {
-                throw new OverflowException($"Przepelnienie podczas wykonywania operacji dla liczb {val1},{val2}");
+                throw new FaultException<OverflowException>(ex, new FaultReason($"Przepelnienie podczas wykonywania operacji dla liczb {val1} i {val2}"));
             }
         }
         public int iSub(int val1, int val2)
@@ -37,9 +37,9 @@ namespace WcfService
                     return result;
                 }
             }
-            catch (OverflowException)
+            catch (OverflowException ex)
             {
-                throw new OverflowException($"Przepelnienie podczas wykonywania operacji dla liczb {val1},{val2}");
+                throw new FaultException<OverflowException>(ex, new FaultReason($"Przepelnienie podczas wykonywania operacji dla liczb {val1} i {val2}"));
             }
         }
         public int iMul(int val1, int val2)
@@ -48,16 +48,16 @@ namespace WcfService
 
             try
             {
-                checked 
+                checked
                 {
                     int result = val1 * val2;
                     Console.WriteLine($"Otrzymany wynik z operacji iMul: {result}");
                     return result;
                 }
             }
-            catch (OverflowException)
+            catch (OverflowException ex)
             {
-                throw new OverflowException($"Przepelnienie podczas wykonywania operacji dla liczb {val1},{val2}");
+                throw new FaultException<OverflowException>(ex, new FaultReason($"Przepelnienie podczas wykonywania operacji dla liczb {val1} i {val2}"));
             }
 
         }
@@ -77,9 +77,9 @@ namespace WcfService
             {
                 throw new DivideByZeroException("Nie można dzielić przez 0");
             }
-            catch (OverflowException)
+            catch (OverflowException ex)
             {
-                throw new OverflowException($"Przepelnienie podczas wykonywania operacji dla liczb {val1},{val2}");
+                throw new FaultException<OverflowException>(ex, new FaultReason($"Przepelnienie podczas wykonywania operacji dla liczb {val1} i  {val2}"));
             }
         }
         public int iMod(int val1, int val2)
@@ -95,13 +95,13 @@ namespace WcfService
                 Console.WriteLine($"Otrzymany wynik z operacji iMod {result}");
                 return result;
             }
-            catch (OverflowException)
+            catch (OverflowException ex)
             {
-                throw new OverflowException($"Przepelnienie podczas wykonywania operacji dla liczb {val1},{val2}");
+                throw new FaultException<OverflowException>(ex, new FaultReason($"Przepelnienie podczas wykonywania operacji dla liczb {val1} i {val2}"));
             }
         }
 
-    public int HMultiply(int val1, int val2)
+        public int HMultiply(int val1, int val2)
         {
             Console.WriteLine($"Wywołano funkcję iMul({val1}, {val2})");
             Thread.Sleep(5000);
@@ -115,10 +115,41 @@ namespace WcfService
                     return result;
                 }
             }
-            catch (OverflowException)
+            catch (OverflowException ex)
             {
-                throw new OverflowException($"Przepelnienie podczas wykonywania operacji dla liczb {val1},{val2}");
+                throw new FaultException<OverflowException>(ex, new FaultReason($"Przepelnienie podczas wykonywania operacji dla liczb {val1} i {val2}"));
             }
+        }
+
+        public (int, int) CountAndMaxPrimesInRange(int val1, int val2)
+        {
+            var prime = new bool[val2 + 1];
+            for (var i = 0; i < prime.Length; i++)
+                prime[i] = true;
+
+            prime[0] = false;
+            prime[1] = false;
+
+            for (var p = 2; p * p <= val2; p++)
+            {
+                if (prime[p])
+                {
+                    for (var i = p * p; i <= val2; i += p)
+                        prime[i] = false;
+                }
+            }
+
+            var count = 0;
+            var max = -1;
+            for (var p = val1; p <= val2; p++)
+            {
+                if (prime[p])
+                {
+                    count++;
+                    max = p;
+                }
+            }
+            return (count, max);
         }
     }
 }

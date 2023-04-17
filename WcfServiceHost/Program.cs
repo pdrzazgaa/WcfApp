@@ -2,7 +2,6 @@
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using WcfService;
-using System.Net.Security;
 
 namespace WcfServiceHost
 {   
@@ -10,6 +9,8 @@ namespace WcfServiceHost
     {
         static void Main(string[] args)
         {
+            MyData.MyInfo();
+
             // URI dla bazowego serwisu
             Uri baseAdress = new Uri("http://localhost:8080/MyCalculator");
 
