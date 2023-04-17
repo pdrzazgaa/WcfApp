@@ -50,6 +50,12 @@ namespace WcfClient.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculator/HMultiply", ReplyAction="http://tempuri.org/ICalculator/HMultiplyResponse")]
         System.Threading.Tasks.Task<int> HMultiplyAsync(int val1, int val2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculator/CountAndMaxPrimesInRange", ReplyAction="http://tempuri.org/ICalculator/CountAndMaxPrimesInRangeResponse")]
+        System.ValueTuple<int, int> CountAndMaxPrimesInRange(int val1, int val2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculator/CountAndMaxPrimesInRange", ReplyAction="http://tempuri.org/ICalculator/CountAndMaxPrimesInRangeResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<int, int>> CountAndMaxPrimesInRangeAsync(int val1, int val2);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -125,6 +131,14 @@ namespace WcfClient.ServiceReference1 {
         
         public System.Threading.Tasks.Task<int> HMultiplyAsync(int val1, int val2) {
             return base.Channel.HMultiplyAsync(val1, val2);
+        }
+        
+        public System.ValueTuple<int, int> CountAndMaxPrimesInRange(int val1, int val2) {
+            return base.Channel.CountAndMaxPrimesInRange(val1, val2);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<int, int>> CountAndMaxPrimesInRangeAsync(int val1, int val2) {
+            return base.Channel.CountAndMaxPrimesInRangeAsync(val1, val2);
         }
     }
 }

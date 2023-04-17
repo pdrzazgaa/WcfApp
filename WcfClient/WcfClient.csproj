@@ -51,6 +51,8 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ICalculator.cs" />
+    <Compile Include="MyCalculatorHandler.cs" />
+    <Compile Include="MyData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,6 +82,9 @@
     <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\ServiceReference1\MyCalculator2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServiceReference1\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

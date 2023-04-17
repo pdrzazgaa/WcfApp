@@ -18,5 +18,7 @@ namespace WcfClient
         int iMod(int val1, int val2);
         [OperationContract]
         int HMultiply(int val1, int val2);
+        [OperationContract]
+        (int, int) CountAndMaxPrimesInRange(int val1, int val2);
     }
 }
