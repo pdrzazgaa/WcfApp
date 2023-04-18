@@ -51,7 +51,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="ICalculator.cs" />
-    <Compile Include="MalCalMenu.cs" />
+    <Compile Include="MyCalMenu.cs" />
     <Compile Include="MyData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

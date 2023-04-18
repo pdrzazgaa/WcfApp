@@ -36,33 +36,36 @@ namespace WcfClient
                 switch (choice)
                 {
                     case 0:
-                        MalCalMenu.Close();
+                        MyCalMenu.Close();
                         break;
                     case 1:
-                        MalCalMenu.Add();
+                        MyCalMenu.Add();
                         break;
                     case 2:
-                        MalCalMenu.Sub();
+                        MyCalMenu.Sub();
                         break;
                     case 3:
-                        MalCalMenu.Mul();
+                        MyCalMenu.Mul();
                         break;
                     case 4:
-                        MalCalMenu.Div();
+                        MyCalMenu.Div();
                         break;
                     case 5:
-                        MalCalMenu.Mod();
+                        MyCalMenu.Mod();
                         break;
                     case 6:
-                        MalCalMenu.HMul();
+                        MyCalMenu.HMul();
                         break;
                     case 7:
-                        MalCalMenu.PrimeNumbersInRange();
+                        MyCalMenu.PrimeNumbersInRange();
                         break;
                     default:
                         Console.WriteLine("Nieprawidłowe wejście.");
                         break;
                 }
+                Console.WriteLine("Naciśnij enter...");
+                Console.ReadLine();
+                Console.Clear();   
             } while (choice != 0);
             Console.ReadKey();
         }

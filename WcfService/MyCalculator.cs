@@ -123,6 +123,8 @@ namespace WcfService
 
         public (int, int) CountAndMaxPrimesInRange(int val1, int val2)
         {
+
+            Console.WriteLine($"Wywołano funkcję dla liczb pierwszych w przedziale ({val1}, {val2})");
             var prime = new bool[val2 + 1];
             for (var i = 0; i < prime.Length; i++)
                 prime[i] = true;
@@ -149,6 +151,8 @@ namespace WcfService
                     max = p;
                 }
             }
+            Console.WriteLine($"Liczba liczb pierwszych: {count}");
+            Console.WriteLine($"Największa liczba pierwsza: {max}");
             return (count, max);
         }
     }

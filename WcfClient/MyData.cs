@@ -9,7 +9,7 @@ class MyData
         Console.WriteLine("Jakub Czerwiński, 260335");
         Console.WriteLine("Paulina Drzazga, 260370");
         DateTime now = DateTime.Now;
-        Console.WriteLine(now.Day + "-" + now.ToString("MMMM") + " " + now.Hour + ":" + now.Minute + ":" + now.Second);
+        Console.WriteLine(now.Day + "-" + now.ToString("MMMM") + " " + now.ToLongTimeString());
         Console.WriteLine(Environment.Version);
         Console.WriteLine(Environment.UserName);
         Console.WriteLine(Environment.OSVersion.Platform);

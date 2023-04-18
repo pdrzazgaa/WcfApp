@@ -12,7 +12,7 @@ namespace WcfServiceHost
             MyData.MyInfo();
 
             // URI dla bazowego serwisu
-            Uri baseAdress = new Uri("http://localhost:8080/MyCalculator");
+            Uri baseAdress = new Uri("http://10.108.127.215:8080/MyCalculator");
 
             // instancja serwisu
             ServiceHost myHost = new ServiceHost(typeof(MyCalculator), baseAdress);

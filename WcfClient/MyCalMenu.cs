@@ -5,21 +5,23 @@ using WcfClient.ServiceReference1;
 namespace WcfClient
 {
 
-    public class MalCalMenu
+    public class MyCalMenu
     {
-        static CalculatorClient _client = new CalculatorClient("WSHttpBinding_ICalculator");
+        static CalculatorClient _client1 = new CalculatorClient("BasicHttpBinding_ICalculator");
+        static CalculatorClient _client2 = new CalculatorClient("WSHttpBinding_ICalculator");
 
         static public void Close()
         {
-            Console.WriteLine("Goodbye!");
-            _client.Close();
+            Console.WriteLine("Pa pa! :(");
+            _client1.Close();
+            _client2.Close();
         }
         static private int GetNumberFromUser()
         {
             int number;
             if (!int.TryParse(Console.ReadLine(), out number))
             {
-                Console.WriteLine("Invalid input.");
+                Console.WriteLine("Niewłaściwe wejście.");
                 return GetNumberFromUser();
             }
             return number;
@@ -34,7 +36,7 @@ namespace WcfClient
 
             try
             {
-                int result = _client.iAdd(n1, n2);
+                int result = _client1.iAdd(n1, n2);
                 Console.WriteLine($"{n1} + {n2} = {result}");
             }
             catch (FaultException ex)
@@ -52,7 +54,7 @@ namespace WcfClient
 
             try
             {
-                int result = _client.iSub(n1, n2);
+                int result = _client1.iSub(n1, n2);
                 Console.WriteLine($"{n1} - {n2} = {result}");
             }
             catch (FaultException ex)
@@ -70,7 +72,7 @@ namespace WcfClient
 
             try
             {
-                int result = _client.iMul(n1, n2);
+                int result = _client1.iMul(n1, n2);
                 Console.WriteLine($"{n1} * {n2} = {result}");
             }
             catch (FaultException ex)
@@ -87,7 +89,7 @@ namespace WcfClient
 
             try
             {
-                int result = _client.iDiv(n1, n2);
+                int result = _client1.iDiv(n1, n2);
                 Console.WriteLine($"{n1} / {n2} = {result}");
             }
             catch (FaultException ex)
@@ -104,7 +106,7 @@ namespace WcfClient
 
             try
             {
-                int result = _client.iMod(n1, n2);
+                int result = _client1.iMod(n1, n2);
                 Console.WriteLine($"{n1} % {n2} = {result}");
             }
             catch (FaultException ex)
@@ -121,7 +123,7 @@ namespace WcfClient
 
             try
             {
-                var result = await _client.HMultiplyAsync(n1, n2);
+                var result = await _client2.HMultiplyAsync(n1, n2);
                 Console.WriteLine($"HMultiply asynchronicznie: {n1} * {n2} = {result}"); ;
             }
             catch (FaultException ex)
@@ -139,7 +141,7 @@ namespace WcfClient
 
             try
             {
-                var result = await _client.CountAndMaxPrimesInRangeAsync(l1, l2);
+                var result = await _client2.CountAndMaxPrimesInRangeAsync(l1, l2);
                 Console.WriteLine($"{result.Item1} liczb pierwszy.");
                 Console.WriteLine($"Największa liczba pierwsza: {result.Item2}");
             }
