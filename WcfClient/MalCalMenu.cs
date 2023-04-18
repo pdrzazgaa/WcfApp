@@ -5,11 +5,11 @@ using WcfClient.ServiceReference1;
 namespace WcfClient
 {
 
-    public class MyCalculatorHandler
+    public class MalCalMenu
     {
         static CalculatorClient _client = new CalculatorClient("WSHttpBinding_ICalculator");
 
-        static public void CloseConnection()
+        static public void Close()
         {
             Console.WriteLine("Goodbye!");
             _client.Close();
@@ -25,7 +25,7 @@ namespace WcfClient
             return number;
         }
 
-        static public void Addition()
+        static public void Add()
         {
             Console.WriteLine("Podaj pierwszą liczbę:");
             int n1 = GetNumberFromUser();
@@ -43,7 +43,7 @@ namespace WcfClient
             }
         }
 
-        static public void Subtraction()
+        static public void Sub()
         {
             Console.WriteLine("Podaj pierwszą liczbę:");
             int n1 = GetNumberFromUser();
@@ -61,7 +61,7 @@ namespace WcfClient
             }
         }
 
-        static public void Multiplication()
+        static public void Mul()
         {
             Console.WriteLine("Podaj pierwszą liczbę:");
             int n1 = GetNumberFromUser();
@@ -78,7 +78,7 @@ namespace WcfClient
                 Console.WriteLine(ex.Message);
             }
         }
-        static public void Division()
+        static public void Div()
         {
             Console.WriteLine("Podaj pierwszą liczbę:");
             int n1 = GetNumberFromUser();
@@ -95,7 +95,7 @@ namespace WcfClient
                 Console.WriteLine(ex.Message);
             }
         }
-        static public void Modulo()
+        static public void Mod()
         {
             Console.WriteLine("Podaj pierwszą liczbę:");
             int n1 = GetNumberFromUser();
@@ -112,7 +112,7 @@ namespace WcfClient
                 Console.WriteLine(ex.Message);
             }
         }
-        static public async void HMultiply()
+        static public async void HMul()
         {
             Console.WriteLine("Podaj pierwszą liczbę:");
             int n1 = GetNumberFromUser();
@@ -130,7 +130,7 @@ namespace WcfClient
             }
         }
 
-        static public async void CountAndMaxPrimesInRangeAsync()
+        static public async void PrimeNumbersInRange()
         {
             Console.WriteLine("Podaj pierwszą liczbę:");
             int l1 = GetNumberFromUser();
