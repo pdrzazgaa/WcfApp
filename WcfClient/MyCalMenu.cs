@@ -142,7 +142,7 @@ namespace WcfClient
             try
             {
                 var result = await _client2.CountAndMaxPrimesInRangeAsync(l1, l2);
-                Console.WriteLine($"{result.Item1} liczb pierwszy.");
+                Console.WriteLine($"{result.Item1} liczb pierwszych.");
                 Console.WriteLine($"Największa liczba pierwsza: {result.Item2}");
             }
             catch (FaultException<ArgumentException> ex)

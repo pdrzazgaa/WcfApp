@@ -73,9 +73,9 @@ namespace WcfService
                     return result;
                 }
             }
-            catch (DivideByZeroException)
+            catch (DivideByZeroException ex)
             {
-                throw new DivideByZeroException("Nie można dzielić przez 0");
+                throw new FaultException<DivideByZeroException>(ex, new FaultReason("Nie można dzielić przez 0"));
             }
             catch (OverflowException ex)
             {
@@ -85,15 +85,15 @@ namespace WcfService
         public int iMod(int val1, int val2)
         {
             Console.WriteLine($"Wywołano funkcję iMod({val1}, {val2})");
-            if (val2 == 0)
-            {
-                throw new DivideByZeroException("Nie można dzielić przez 0");
-            }
             try
             {
                 int result = val1 % val2;
                 Console.WriteLine($"Otrzymany wynik z operacji iMod {result}");
                 return result;
+            }
+            catch (DivideByZeroException ex)
+            {
+                throw new FaultException<DivideByZeroException>(ex, new FaultReason("Nie można dzielić przez 0"));
             }
             catch (OverflowException ex)
             {
