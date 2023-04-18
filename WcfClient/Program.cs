@@ -6,19 +6,12 @@ namespace WcfClient
 {
     internal class Program
     {
-        static async Task<int> callHMultiply(int val1, int val2, CalculatorClient myClient2)
-        {
-            Console.WriteLine("2... Wywołano callHMultiplyAsync");
-            int result = await myClient2.HMultiplyAsync(val1, val2);
-            Console.WriteLine("2... Zakończono callHMultiplyAsync");
-            return result;
-        }
 
         static void Main(string[] args)
         {
             MyData.MyInfo();
 
-            int operation = 0;
+            int choice = 0;
   
             do
             {
@@ -34,43 +27,43 @@ namespace WcfClient
                 Console.WriteLine("0. Wyjście");
                 Console.ResetColor();
 
-                if (!int.TryParse(Console.ReadLine(), out operation))
+                if (!int.TryParse(Console.ReadLine(), out choice))
                 {
                     Console.WriteLine("Nieprawidłowe wejście.");
                     continue;
                 }
 
-                switch (operation)
+                switch (choice)
                 {
                     case 0:
-                        MyCalculatorHandler.CloseConnection();
+                        MalCalMenu.Close();
                         break;
                     case 1:
-                        MyCalculatorHandler.Addition();
+                        MalCalMenu.Add();
                         break;
                     case 2:
-                        MyCalculatorHandler.Subtraction();
+                        MalCalMenu.Sub();
                         break;
                     case 3:
-                        MyCalculatorHandler.Multiplication();
+                        MalCalMenu.Mul();
                         break;
                     case 4:
-                        MyCalculatorHandler.Division();
+                        MalCalMenu.Div();
                         break;
                     case 5:
-                        MyCalculatorHandler.Modulo();
+                        MalCalMenu.Mod();
                         break;
                     case 6:
-                        MyCalculatorHandler.HMultiply();
+                        MalCalMenu.HMul();
                         break;
                     case 7:
-                        MyCalculatorHandler.CountAndMaxPrimesInRangeAsync();
+                        MalCalMenu.PrimeNumbersInRange();
                         break;
                     default:
                         Console.WriteLine("Nieprawidłowe wejście.");
                         break;
                 }
-            } while (operation != 0);
+            } while (choice != 0);
             Console.ReadKey();
         }
 
